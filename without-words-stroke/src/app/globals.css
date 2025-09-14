@@ -1,26 +1,188 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+/* WWS Medical Portal Design System
+Based on the brand guidelines for stroke recovery ecosystem
+All colors MUST be HSL with warm, supportive palette
+*/
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    /* WWS Brand Colors */
+    --background: 206 100% 97%; /* #E3F2FD - light blue background */
+    --foreground: 210 15% 16%; /* #212529 - dark gray text */
+
+    --card: 0 0% 100%; /* Pure white for cards */
+    --card-foreground: 210 15% 16%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 210 15% 16%;
+
+    /* Medical Primary - Deep Blue for Trust */
+    --primary: 217 75% 42%; /* #1565C0 - deep medical blue */
+    --primary-foreground: 0 0% 100%;
+    --primary-glow: 217 75% 52%; /* #1E88E5 - bright blue for interactions */
+
+    /* Supportive Secondary - Light backgrounds */
+    --secondary: 206 100% 97%; /* #E3F2FD - light blue calm */
+    --secondary-foreground: 217 75% 42%;
+
+    /* Growth Accent - Gentle Green */
+    --accent: 127 39% 92%; /* #E8F5E9 - gentle green hope */
+    --accent-foreground: 217 75% 42%;
+
+    /* Warm Coral - Friendly Action */
+    --coral: 16 100% 63%; /* #FF7043 - warm coral accent */
+    --coral-foreground: 0 0% 100%;
+
+    /* SOS Critical - Emergency Red */
+    --sos: 352 100% 54%; /* #FF1744 - bright red for emergencies */
+    --sos-soft: 6 100% 70%; /* #FF6B6B - soft red for alerts */
+    --sos-foreground: 0 0% 100%;
+
+    /* Warning Yellow */
+    --warning: 48 100% 61%; /* #FFD93D - warm yellow attention */
+    --warning-foreground: 210 15% 16%;
+
+    /* Muted supportive grays */
+    --muted: 210 14% 97%; /* #F5F5F5 - neutral background */
+    --muted-foreground: 208 7% 46%; /* #6C757D - secondary text */
+
+    /* Borders and inputs - light blue theme */
+    --border: 211 82% 86%; /* #BBDEFB - light blue borders */
+    --input: 211 82% 86%;
+    --ring: 217 75% 42%;
+
+    /* Medical gradients */
+    --gradient-calm: linear-gradient(135deg, hsl(206 100% 97%), hsl(127 39% 92%));
+    --gradient-energy: linear-gradient(135deg, hsl(16 100% 63%), hsl(48 100% 61%));
+    --gradient-sos: linear-gradient(135deg, hsl(352 100% 54%), hsl(6 100% 70%));
+
+    /* Animations and transitions */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --shadow-gentle: 0 4px 12px hsla(217, 75%, 42%, 0.1);
+    --shadow-lifted: 0 8px 24px hsla(217, 75%, 42%, 0.15);
+    --shadow-sos: 0 4px 16px hsla(352, 100%, 54%, 0.3);
+
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    /* Dark theme for medical accessibility */
+    --background: 0 0% 7%; /* #121212 - soft dark background */
+    --foreground: 0 0% 100%;
+
+    --card: 0 0% 11%; /* #2D2D2D - elevated surfaces */
+    --card-foreground: 0 0% 100%;
+
+    --popover: 0 0% 11%;
+    --popover-foreground: 0 0% 100%;
+
+    --primary: 217 75% 52%; /* Brighter blue for dark theme */
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 0 0% 18%; /* #2D2D2D - secondary surfaces */
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 0 0% 18%;
+    --muted-foreground: 0 0% 70%; /* #B3B3B3 - muted text */
+
+    --accent: 0 0% 23%; /* #3A3A3A - accent surfaces */
+    --accent-foreground: 0 0% 100%;
+
+    /* Keep warm coral in dark theme */
+    --coral: 16 100% 63%;
+    --coral-foreground: 0 0% 100%;
+
+    /* SOS stays bright for visibility */
+    --sos: 352 100% 54%;
+    --sos-soft: 6 100% 70%;
+    --sos-foreground: 0 0% 100%;
+
+    --warning: 48 100% 61%;
+    --warning-foreground: 0 0% 7%;
+
+    --border: 0 0% 23%; /* #3A3A3A */
+    --input: 0 0% 18%;
+    --ring: 217 75% 52%;
+
+    /* Dark theme gradients */
+    --gradient-calm: linear-gradient(135deg, hsl(0 0% 11%), hsl(0 0% 18%));
+    --gradient-energy: linear-gradient(135deg, hsl(16 100% 63%), hsl(48 100% 61%));
+    --shadow-gentle: 0 4px 12px hsla(0, 0%, 0%, 0.3);
+    --shadow-lifted: 0 8px 24px hsla(0, 0%, 0%, 0.4);
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans;
+  }
+
+  /* WWS Medical Portal Animation Classes */
+  .animate-pulse-gentle {
+    animation: pulse-gentle 2s infinite;
+  }
+
+  .animate-float {
+    animation: float 3s ease-in-out infinite;
+  }
+
+  .animate-fade-in {
+    animation: fade-in 0.6s ease-out;
+  }
+
+  .transition-smooth {
+    transition: var(--transition-smooth);
+  }
+}
+
+@keyframes pulse-gentle {
+  0%, 100% { 
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% { 
+    transform: scale(1.02);
+    opacity: 0.9;
+  }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+}
+
+@keyframes fade-in {
+  from { 
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to { 
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Medical portal typography */
+@layer components {
+  .text-supportive {
+    @apply text-muted-foreground leading-relaxed;
+  }
+  
+  .heading-medical {
+    @apply font-bold tracking-tight text-foreground;
+  }
+  
+  .gradient-text {
+    background: var(--gradient-energy);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
 }

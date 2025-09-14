@@ -1,16 +1,14 @@
 import { Layout } from '../components/layout';
-import { HeroSection } from '../components/sections/HeroSection';
-import { SymptomsPrevention } from '../components/sections/SymptomsPrevention';
+import { MainPortal } from '../components/sections/MainPortal';
 
 /**
  * 🎯 Главная страница Without Words Stroke
- * Живой логотип, SOS кнопка, симптомы и профилактика
+ * Дизайн из репозитория с выбором ролей пользователей
  */
 export default function Home() {
   return (
     <Layout>
-      <HeroSection />
-      <SymptomsPrevention />
+      <MainPortal />
     </Layout>
   );
 }
